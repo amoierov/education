@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "education"
 include(":app")
- 
+include(":feature_auth")

@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#12B956" />
-    <corners android:radius="30dp"/>
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Состояние: кнопка выключена -->
+    <item android:state_enabled="false">
+        <shape>
+            <solid android:color="#262525"/> <!-- Серый цвет для неактивной кнопки -->
+            <corners android:radius="30dp"/>
+        </shape>
+    </item>
+
+    <!-- Состояние: кнопка включена -->
+    <item>
+        <shape>
+            <solid android:color="#12B956"/> <!-- Зелёный цвет для активной кнопки -->
+            <corners android:radius="30dp"/>
+        </shape>
+    </item>
+</selector>

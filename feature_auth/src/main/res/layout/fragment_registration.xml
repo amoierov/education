@@ -6,7 +6,7 @@
     android:background="#000000"
     android:orientation="vertical"
     android:paddingHorizontal="16dp"
-    tools:context=".RegistrationFragment">
+    tools:context=".AuthFragment">
 
     <TextView
         android:layout_width="match_parent"
@@ -31,6 +31,7 @@
         android:background="@drawable/shape_rounded_variants">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -55,8 +56,10 @@
         android:background="@drawable/shape_rounded_variants">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="11dp"
             android:background="@android:color/transparent"
@@ -79,8 +82,10 @@
         android:background="@drawable/shape_rounded_variants">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputRepeatPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="11dp"
             android:background="@android:color/transparent"
@@ -88,7 +93,7 @@
             android:textColorHint="#80FFFFFF" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/button_registration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -115,7 +120,7 @@
 
         <!-- Кликабельный текст "Войти" -->
         <TextView
-            android:id="@+id/tvLogin"
+            android:id="@+id/toLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
@@ -129,32 +134,5 @@
         android:layout_height="1dp"
         android:layout_marginTop="32dp"
         android:background="#4D555E" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/bg_vk"
-            android:src="@drawable/vk"
-            android:textColor="@android:color/white" />
-
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="16dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_ok"
-            android:contentDescription="TODO"
-            android:src="@drawable/ok"
-            android:textColor="@android:color/white" />
-
-    </LinearLayout>
 
 </LinearLayout>

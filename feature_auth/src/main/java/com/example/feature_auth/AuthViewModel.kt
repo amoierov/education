@@ -1,5 +1,6 @@
 package com.example.feature_auth
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,7 +11,8 @@ class AuthViewModel() : ViewModel() {
     private val _authState = MutableStateFlow<AuthState>(AuthState.Unauthenticated)
     val authState: StateFlow<AuthState> = _authState
 
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
+
 
     fun login(email: String, password: String) {
         if (email.isEmpty() || password.isEmpty()) {
@@ -36,7 +38,7 @@ class AuthViewModel() : ViewModel() {
             return
         }
 
-        _authState.value = AuthState.Loading
+//        _authState.value = AuthState.Loading
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {

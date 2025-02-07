@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginTop="32dp"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingHorizontal="16dp">
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/bg_vk"
+        android:contentDescription="ВКонтакте"
+        android:src="@drawable/vk" />
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_ok"
+        android:contentDescription="Одноклассники"
+        android:src="@drawable/ok" />
+
+</LinearLayout>

@@ -53,10 +53,11 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
         binding.layoutLogin.textInputPassword.addTextChangedListener(InputTextWatcher { text ->
             authViewModel.updateEvent(AuthEvent.InputPassword(text))
         })
-
         //Inputs Register
         binding.layoutRegistration.textInputEmail.addTextChangedListener(InputTextWatcher { text ->
             authViewModel.updateEvent(AuthEvent.InputEmail(text))
+            val cursorPosition = binding.layoutRegistration.textInputEmail.selectionStart
+            Log.d("CursorPosition", "Cursor position: $cursorPosition")
         })
 
         binding.layoutRegistration.textInputPassword.addTextChangedListener(InputTextWatcher { text ->
@@ -85,6 +86,9 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                         binding.layoutRegistration.root.visibility = View.VISIBLE
                         binding.layoutRegistration.buttonRegistration.isEnabled = state.enableButton
                         binding.layoutRegistration.textInputEmail.setText(state.email)
+                        //setText перезаписывает поле, поэтому курсор нужно обновить
+                        binding.layoutRegistration.textInputEmail.setSelection(state.email.length)
+
 
                     }
 

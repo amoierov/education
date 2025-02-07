@@ -9,20 +9,18 @@
     tools:context=".AuthFragment">
 
     <TextView
+        style="@style/TextAppearance.AppCompat.TextViewVariantStyle.Header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="140dp"
-        android:text="Вход"
-        android:textColor="#F2F2F3"
-        android:textSize="28sp" />
+        android:text="@string/enter" />
 
     <TextView
+        style="@style/TextAppearance.AppCompat.TextViewVariantStyle.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="@string/email"
-        android:textColor="#F2F2F3"
-        android:textSize="16sp" />
+        android:text="@string/email" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -32,22 +30,21 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEmail"
+            style="@style/TextAppearance.AppCompat.TextViewVariantStyle.TextInputHint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="11dp"
             android:background="@android:color/transparent"
-            android:hint="@string/example_gmail_com"
-            android:textColorHint="#80FFFFFF" />
+            android:hint="@string/example_gmail_com" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
+        style="@style/TextAppearance.AppCompat.TextViewVariantStyle.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Пароль"
-        android:textColor="#F2F2F3"
-        android:textSize="16sp" />
+        android:text="@string/password" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -57,26 +54,26 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputPassword"
+            style="@style/TextAppearance.AppCompat.TextViewVariantStyle.TextInputHint"
             android:layout_width="match_parent"
-            android:inputType="textPassword"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="11dp"
             android:background="@android:color/transparent"
-            android:hint="Введите пароль"
-            android:textColorHint="#80FFFFFF" />
+            android:hint="@string/enter_password"
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <Button
         android:id="@+id/button_login"
+        style="@style/TextAppearance.AppCompat.TextViewVariantStyle.ButtonText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/button_background"
-        android:text="Вход"
-        android:textAllCaps="false"
-        android:textColor="#F2F2F3" />
+        android:text="@string/enter"
+        android:textAllCaps="false" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -85,29 +82,29 @@
         android:layout_marginTop="16dp"
         android:orientation="horizontal">
 
+
         <!-- Статичный текст -->
         <TextView
+            style="@style/TextAppearance.AppCompat.TextViewVariantStyle.HintText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="У вас нету аккаунта?"
-            android:textColor="#F2F2F3"
-            android:textSize="12sp" />
+            android:text="@string/create_account" />
 
         <!-- Кликабельный текст "Войти" -->
         <TextView
+            style="@style/TextAppearance.AppCompat.TextViewVariantStyle.HintText.Navigate"
             android:id="@+id/toRegistration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
-            android:text="Регистрация"
-            android:textColor="#12B956"
-            android:textSize="12sp" />
+            android:fontFamily="@font/roboto_semi_bold"
+            android:text="@string/registration" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="32dp"
-        android:background="#4D555E" />
+        android:background="@color/line_view_color" />
 
 </LinearLayout>

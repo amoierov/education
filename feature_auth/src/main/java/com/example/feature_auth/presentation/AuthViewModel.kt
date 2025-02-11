@@ -1,6 +1,5 @@
-package com.example.feature_auth
+package com.example.feature_auth.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.MutableStateFlow

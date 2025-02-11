@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="@color/black">
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -19,8 +19,7 @@
             android:id="@+id/layout_registration"
             layout="@layout/fragment_registration"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
 
 
         <include
@@ -29,9 +28,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            tools:visibility="gone"/>
+            tools:visibility="gone" />
 
     </FrameLayout>
+
+    <include
+        android:id="@+id/include_loading"
+        layout="@layout/include_loading"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        tools:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -54,7 +60,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/bg_vk"
-            android:contentDescription="ВКонтакте"
+            android:contentDescription="@string/vk"
             android:src="@drawable/vk" />
 
         <ImageButton
@@ -64,7 +70,7 @@
             android:layout_marginStart="16dp"
             android:layout_weight="1"
             android:background="@drawable/bg_ok"
-            android:contentDescription="Одноклассники"
+            android:contentDescription="@string/od"
             android:src="@drawable/ok" />
 
     </LinearLayout>

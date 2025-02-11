@@ -1,17 +1,14 @@
-package com.example.feature_auth
+package com.example.feature_auth.presentation.auth
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.example.feature_auth.R
 import com.example.feature_auth.databinding.FragmentAuthBinding
 import kotlinx.coroutines.launch
 
@@ -89,24 +86,50 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                         //setText перезаписывает поле, поэтому курсор нужно обновить
                         binding.layoutRegistration.textInputEmail.setSelection(state.email.length)
 
+                        binding.includeLoading.root.visibility = View.GONE
+                        binding.linearLayout.visibility = View.VISIBLE
+
 
                     }
 
                     is AuthStateUI.Loading -> {
-                        // Handle error state
-                    }
+                        binding.includeLoading.root.visibility = View.VISIBLE
+                        binding.layoutRegistration.root.visibility = View.GONE
+                        binding.layoutLogin.root.visibility = View.GONE
+                        binding.linearLayout.visibility = View.GONE
 
-                    is AuthStateUI.Success -> {
-                        // Handle authenticated state
                     }
 
                     is AuthStateUI.Login -> {
                         binding.layoutRegistration.root.visibility = View.GONE
                         binding.layoutLogin.root.visibility = View.VISIBLE
                         binding.layoutLogin.buttonLogin.isEnabled = state.enableButton
+
+                        binding.includeLoading.root.visibility = View.GONE
+                        binding.linearLayout.visibility = View.VISIBLE
                     }
 
                 }
+            }
+        }
+
+        lifecycleScope.launch {
+            authViewModel.authEffects.collect { effect ->
+                when (effect) {
+                    is AuthEffect.NavigateToRegisterScreen -> {
+                        // Navigate to register screen
+                    }
+
+                    is AuthEffect.ShowPopUpError -> {
+                        Toast.makeText(this@AuthFragment.requireContext(), effect.message, Toast.LENGTH_LONG).show()
+                    }
+
+                    AuthEffect.NavigateToHome -> {
+                        Toast.makeText(this@AuthFragment.requireContext(), "ok", Toast.LENGTH_LONG).show()
+                    }
+
+                }
+
             }
         }
 

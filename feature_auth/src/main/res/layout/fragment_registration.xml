@@ -3,16 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="@color/black"
     android:orientation="vertical"
     android:paddingHorizontal="16dp"
-    tools:context=".AuthFragment">
+    tools:context=".presentation.auth.AuthFragment">
 
     <TextView
         style="@style/TextAppearance.AppCompat.TextViewVariantStyle.Header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="100dp"
         android:text="@string/name_registration" />
 
     <TextView
@@ -117,7 +117,7 @@
         <!-- Кликабельный текст "Войти" -->
         <TextView
             android:id="@+id/toLogin"
-            style="@style/TextAppearance.AppCompat.TextViewVariantStyle.HintText"
+            style="@style/TextAppearance.AppCompat.TextViewVariantStyle.HintText.Navigate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"

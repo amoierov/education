@@ -11,4 +11,8 @@
     <string name="create_account">У вас нету аккаунта?</string>
     <string name="repeat_password">Введите пароль еще раз</string>
     <string name="have_account">Уже есть аккаунт?</string>
+    <string name="vk">ВКонтакте</string>
+    <string name="od">Одноклассники</string>
+    <string name="onboarding_text">Тысячи курсов \n в одном месте</string>
+    <string name="onboarding_text_button">Продолжить</string>
 </resources>

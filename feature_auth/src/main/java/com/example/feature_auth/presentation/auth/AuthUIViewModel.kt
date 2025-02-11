@@ -1,11 +1,21 @@
-package com.example.feature_auth
+package com.example.feature_auth.presentation.auth
 
+import android.util.Patterns
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.feature_auth.DI.ServiceLocator
+import com.example.feature_auth.domain.AuthInteract
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class AuthUIViewModel() : ViewModel() {
+    //отправить в параметры
+    private val authInteractror: AuthInteract = ServiceLocator.authInteract
 
     private val _authState = MutableStateFlow<AuthStateUI>(
         AuthStateUI.Login(
@@ -16,22 +26,23 @@ class AuthUIViewModel() : ViewModel() {
     )
     val authState: StateFlow<AuthStateUI> = _authState
 
+    private val _authEffects: MutableSharedFlow<AuthEffect> =
+        MutableSharedFlow(replay = 0, extraBufferCapacity = 1)
+
+    val authEffects: SharedFlow<AuthEffect> = _authEffects
+
     fun updateEvent(event: AuthEvent) {
         when (event) {
-            AuthEvent.ClickRegister -> {
+            AuthEvent.ClickRegister -> viewModelScope.launch {
                 val authState = authState.value
                 if (authState is AuthStateUI.SignUp) {
                     val email = authState.email
                     val password = authState.password
-
-                    if (authState.enableButton) {
-                        signup(email, password)
-                    }
-
+                    signup(email, password)
                 }
             }
 
-            AuthEvent.ClickLogin -> {
+            AuthEvent.ClickLogin -> viewModelScope.launch {
                 val authState = authState.value
                 if (authState is AuthStateUI.Login) {
                     val email = authState.email
@@ -45,7 +56,7 @@ class AuthUIViewModel() : ViewModel() {
             AuthEvent.ClickToLogin -> _authState.update {
                 if (it is AuthStateUI.SignUp) {
                     val email = it.email
-                    AuthStateUI.Login(email, "", false)
+                    AuthStateUI.Login(email, "", enableButton = false)
                 } else
                     it
             }
@@ -104,17 +115,77 @@ class AuthUIViewModel() : ViewModel() {
         }
     }
 
-    private fun login(email: String, password: String): Boolean {
-        return true
+
+    private suspend fun login(email: String, password: String) {
+
+        _authState.update {
+            AuthStateUI.Loading(it.email, it.password)
+        }
+        delay(1000)
+        val result = authInteractror.login(email, password)
+        if (result.isSuccessful) {
+            //Чтобы вернуться, удалить позже
+            _authState.update {
+                AuthStateUI.Login(
+                    it.email,
+                    it.password,
+                    enableButton = isLoginValid(it.email, it.password)
+                )
+            }
+            sendAuthEffect(AuthEffect.NavigateToHome)
+        } else {
+            _authState.update {
+                AuthStateUI.Login(
+                    it.email,
+                    it.password,
+                    enableButton = isLoginValid(it.email, it.password)
+                )
+            }
+            sendAuthEffect(AuthEffect.ShowPopUpError(result.errorMessage))
+        }
     }
 
-    private fun signup(email: String, password: String): Boolean {
-        return true
+    private suspend fun signup(email: String, password: String) {
+        _authState.update {
+            AuthStateUI.Loading(it.email, it.password)
+        }
+        delay(1000)
+        val result = authInteractror.signup(email, password)
+        if (result.isSuccessful) {
+            //Чтобы вернуться, удалить позже
+            _authState.update {
+                AuthStateUI.SignUp(
+                    it.email,
+                    it.password,
+                    enableButton = isLoginValid(it.email, it.password),
+                    repeatPassword = it.repeatPassword
+                )
+            }
+            sendAuthEffect(AuthEffect.NavigateToHome)
+        } else {
+            _authState.update {
+                AuthStateUI.SignUp(
+                    it.email,
+                    it.password,
+                    enableButton = isLoginValid(it.email, it.password),
+                    repeatPassword = it.repeatPassword
+                )
+            }
+            sendAuthEffect(AuthEffect.ShowPopUpError(result.errorMessage))
+        }
+    }
+
+
+    private fun sendAuthEffect(effect: AuthEffect) {
+        viewModelScope.launch {
+            _authEffects.emit(effect)
+        }
+
     }
 
 
     private fun isEmailValid(email: String): Boolean {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     private fun isPasswordValid(password: String): Boolean {

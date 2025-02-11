@@ -5,4 +5,5 @@
     <color name="white">#F2F2F3</color>
     <color name="gray_hint">#80FFFFFF</color>
     <color name="line_view_color">#4D555E</color>
+    <color name="black">#000000</color>
 </resources>

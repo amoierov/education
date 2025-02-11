@@ -1,4 +1,4 @@
-package com.example.feature_auth
+package com.example.feature_auth.presentation.auth
 
 import android.text.Editable
 import android.text.TextWatcher

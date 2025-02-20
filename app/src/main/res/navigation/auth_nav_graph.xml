@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    android:id="@+id/auth_nav_graph"
+    app:startDestination="@id/onboarding_fragment">
 
     <fragment
         android:id="@+id/onboarding_fragment"
@@ -15,15 +15,6 @@
 
     <fragment
         android:id="@+id/authFragment"
-        android:name="com.example.education.feature_auth.presentation.auth.AuthFragment" >
-        <action
-            android:id="@+id/action_authFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.education.feature_home.presentation.HomeFragment" />
-
+        android:name="com.example.education.feature_auth.presentation.auth.AuthFragment" />
 
 </navigation>

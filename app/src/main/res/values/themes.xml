@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Education" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Education" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <item name="android:statusBarColor">@color/black</item>
+        <!-- Основные цвета -->
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#03DAC6</item>
+        <item name="colorOnSecondary">#000000</item>
+        <item name="colorTertiary">#FF9800</item>
+
+        <!-- Фоновые цвета -->
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#000000</item>
+        <item name="colorOnBackground">#212121</item>
+    </style>
+
 </resources>
